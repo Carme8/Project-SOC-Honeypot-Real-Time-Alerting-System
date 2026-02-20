@@ -98,6 +98,8 @@ Attraverso la dashboard personalizzata, è possibile visualizzare:
 * **Threat Intelligence Locale**: Raccolta di indicatori di compromissione (IoC) specifici.
 * **Automazione della Sicurezza**: Dimostrazione di competenze in Python Automation e Container Security (Docker).
 
+Project SOC © 2026
+
 ---
 
 ## 🛠️ Come Avviare il Progetto
@@ -107,4 +109,3 @@ Attraverso la dashboard personalizzata, è possibile visualizzare:
 ```bash
 docker-compose up -d --build
 
-Project SOC © 2026
