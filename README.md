@@ -83,14 +83,15 @@ Il sistema classifica gli eventi in base al rischio potenziale:
 ---
 
 ## 📊 Analisi Forense con Kibana
+L'integrazione con lo stack ELK permette di trasformare i log JSON grezzi in una timeline interattiva per l'incident response.
 Attraverso la dashboard personalizzata, è possibile visualizzare:
-* **Top Attack Commands**: I comandi più digitati dagli attaccanti.
-* **Authentication Trends**: Rapporto tra login falliti e riusciti.
-* **Event Timeline**: Analisi temporale dei picchi di attacco.
-
-> **📸 SCREENSHOT CONSIGLIATO**: Dashboard di Kibana con grafici a torta e serie temporali.
+* **Attack Timeline**: Monitoraggio dei picchi di attività e distinzione tra bot e attacchi mirati.
+* **Log Correlation**: Aggregazione in tempo reale di IP, credenziali e comandi in un'unica timeline.
+* **Operational Visibility**: Analisi dei parametri di connessione e della durata delle sessioni per l'identificazione degli attaccanti.
 
 ---
+
+<img width="1440" height="881" alt="Forensic Event View" src="https://github.com/user-attachments/assets/a53aaa14-0797-4bbe-853c-554a001037fb" />
 
 ## 💼 Valore per l'Azienda
 * **Riduzione del MTTR (Mean Time To Respond)**: Alerting istantaneo che permette interventi immediati.
@@ -105,3 +106,5 @@ Attraverso la dashboard personalizzata, è possibile visualizzare:
 3. Avvia l'infrastruttura:
 ```bash
 docker-compose up -d --build
+
+Project SOC © 2026
