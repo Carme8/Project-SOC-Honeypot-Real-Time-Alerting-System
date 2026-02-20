@@ -15,6 +15,27 @@ Il sistema è orchestrato tramite **Docker Compose** e si divide in tre livelli:
 
 ---
 
+## 🛠️ Step di Configurazione
+
+1.  **Preparazione dell'ambiente Docker**
+
+L'intero ecosistema è gestito tramite Docker Desktop e orchestrato con Docker Compose, garantendo isolamento e scalabilità.
+
+**Docker Dashboard**
+
+<img width="1440" height="391" alt="Docker Dashboard" src="https://github.com/user-attachments/assets/e26b672f-31e7-4a51-a1ae-f3bc6bda1721" />
+
+**Docker Compose**
+
+
+<img width="1277" height="236" alt="Docker Compose" src="https://github.com/user-attachments/assets/c4508350-e010-4b07-be29-1561d1979b13" />
+
+2.  **Sviluppo del Bot di Alerting**
+   
+<img width="1437" height="823" alt="VS Code in Split View" src="https://github.com/user-attachments/assets/969f2e30-9cce-48ca-9f13-087f66ae2987" />
+
+---
+
 ## 🕵️ Casi d'Uso e Simulazioni (Cyber Kill Chain)
 
 ### 1. Rilevamento Intrusione (Brute Force)
