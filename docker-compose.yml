@@ -1,0 +1,80 @@
+version: '3.8'
+
+services:
+  honeypot:
+    image: cowrie/cowrie:latest
+    container_name: cowrie_trappola
+    environment:
+      - COWRIE_STDOUT=true
+      - COWRIE_OUTPUT_JSONLOG_ENABLED=true
+      - COWRIE_OUTPUT_ELASTICSEARCH_ENABLED=false
+    ports:
+      - "2222:2222"
+      - "2223:2223"
+    volumes:
+      - ./cowrie.cfg:/cowrie/cowrie-git/etc/cowrie.cfg
+      - ./logs:/cowrie/cowrie-git/var/log/cowrie
+      - ./honey_data:/cowrie/cowrie-git/var/lib/cowrie
+    networks:
+      - soc_net
+    depends_on:
+      - elasticsearch
+    restart: always
+
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:7.10.2
+    container_name: filebeat_shipper
+    user: root
+    volumes:
+      - ./logs:/var/log/cowrie:ro
+      - ./filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - soc_net
+    depends_on:
+      - elasticsearch
+    restart: always
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.2
+    container_name: elastic_db
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200"
+    networks:
+      soc_net:
+        aliases:
+          - elasticsearch
+    restart: always
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.10.2
+    container_name: kibana_dashboard
+    ports:
+      - "5601:5601" 
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    networks:
+      - soc_net
+    depends_on:
+      - elasticsearch
+
+  telegram_bot:
+    build:
+      context: .
+      dockerfile: Dockerfile_alert
+    container_name: soc_telegram_alert
+    entrypoint: ["python", "-u", "telegram_alert.py"]
+    volumes:
+      - ./logs:/app/logs:ro
+    networks:
+      - soc_net
+    restart: always
+
+networks:
+  soc_net:
+    driver: bridge
