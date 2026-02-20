@@ -44,12 +44,28 @@ Ogni tentativo di accesso viene loggato, catturando username e password utilizza
 
 <img width="1433" height="801" alt="soc-honeypot-alert-system" src="https://github.com/user-attachments/assets/6fb6b538-06c6-4188-82a2-fd9e86c25690" />
 
-### 2. Malware Staging & Execution
-Il sistema rileva comandi critici per il download di payload malevoli (es. `wget`, `curl`).
-> **📸 SCREENSHOT CONSIGLIATO**: Comando `wget` nel terminale e relativo alert Telegram.
+### 2. Malware Staging & Detection
+Rilevamento di attività post-compromissione e tentativi di esfiltrazione dati.
+* *Azione:*  Tentativo di lettura /etc/shadow e download payload via wget.
 
-### 3. Privilege Escalation & Persistence
-Monitoraggio di tentativi di acquisizione privilegi root o modifica dei task pianificati (`crontab`).
+* *Analisi:* Monitoraggio real-time per prevenire l'esecuzione di malware e il cracking delle password.
+
+* *IOC:* Estrazione immediata di IP sorgente e URL malevoli per arricchire la Threat Intelligence.
+
+<img width="1439" height="798" alt="malware-staging-and-credential-dumping-alerts" src="https://github.com/user-attachments/assets/b2d79b6d-cb94-4353-b51e-fd1208070b8d" />
+
+### 3. SSH Intrusion Analysis: Hacker vs Honeypot
+Tentativi di un Hacker di scalare i privilegi e installare malware, neutralizzati con successo da rigorose misure di hardening e isolamento di rete.
+
+* *Reverse Shell Blocked:* Tentativo nc -e fallito.
+
+* *Data Leak Prevented:* Furto di /etc/passwd intercettato.
+
+* *Malware Injection Failed:* Download di botnet e miner bloccati.
+
+* *Network Isolation:* Accesso DNS/Internet negato all'attaccante.
+
+<img width="1440" height="760" alt="hacker-session-log" src="https://github.com/user-attachments/assets/6cd7019b-6d7a-401d-a567-25b5b0245b34" />
 
 ---
 
@@ -59,9 +75,9 @@ Il sistema classifica gli eventi in base al rischio potenziale:
 
 | Severità | Tipo di Attacco | Comandi Esempio | Impatto Potenziale |
 | :--- | :--- | :--- | :--- |
-| 🔵 **INFO** | Ricognizione | `whoami`, `ls`, `uname` | Basso: Esplorazione dell'ambiente. |
-| 🟡 **MEDIUM** | Network Scan | `nmap`, `ping -c 3` | Medio: Tentativo di movimento laterale. |
-| 🟠 **HIGH** | Malware Injection | `wget`, `chmod +x` | Alto: Installazione di software malevolo. |
+| 🟢 **INFO** | Ricognizione | `whoami`, `ls`, `uname` | Basso: Esplorazione dell'ambiente. |
+| 🔵 **MEDIUM** | Network Scan | `nmap`, `ping -c 3` | Medio: Tentativo di movimento laterale. |
+| 🟡 **HIGH** | Malware Injection | `wget`, `chmod +x` | Alto: Installazione di software malevolo. |
 | 🔴 **CRITICAL** | Post-Exploitation | `bash -i` (Reverse Shell) | Critico: Controllo remoto del server. |
 
 ---
