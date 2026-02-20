@@ -27,12 +27,13 @@ L'intero ecosistema è gestito tramite Docker Desktop e orchestrato con Docker C
 
 **Docker Compose**
 
-
-<img width="1277" height="236" alt="Docker Compose" src="https://github.com/user-attachments/assets/c4508350-e010-4b07-be29-1561d1979b13" />
+<img width="1277" height="236" alt="Docker Compose" src="https://github.com/user-attachments/assets/7fc66fee-cabf-4ccb-bdb0-8de3e6d24581" />
 
 2.  **Sviluppo del Bot di Alerting**
+
+**Monitoraggio Real-Time di un SOC Honeypot tramite Telegram Bot**
    
-<img width="1437" height="823" alt="VS Code in Split View" src="https://github.com/user-attachments/assets/969f2e30-9cce-48ca-9f13-087f66ae2987" />
+<img width="1437" height="823" alt="VS Code in Split View" src="https://github.com/user-attachments/assets/abf0c73d-24cd-4a6f-8c28-110f3f63d14d" />
 
 ---
 
@@ -40,7 +41,8 @@ L'intero ecosistema è gestito tramite Docker Desktop e orchestrato con Docker C
 
 ### 1. Rilevamento Intrusione (Brute Force)
 Ogni tentativo di accesso viene loggato, catturando username e password utilizzati.
-> **📸 SCREENSHOT CONSIGLIATO**: Terminale SSH con login e Notifica Telegram del bot.
+
+<img width="1433" height="801" alt="soc-honeypot-alert-system" src="https://github.com/user-attachments/assets/6fb6b538-06c6-4188-82a2-fd9e86c25690" />
 
 ### 2. Malware Staging & Execution
 Il sistema rileva comandi critici per il download di payload malevoli (es. `wget`, `curl`).
